@@ -21,21 +21,6 @@ function closeOnEscape(e) {
   }
 }
 
-function closeOnFocusLost(e) {
-  const nav = e.currentTarget;
-  if (!nav.contains(e.relatedTarget)) {
-    const navSections = nav.querySelector('.nav-sections');
-    const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
-    if (navSectionExpanded && isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleAllNavSections(navSections, false);
-    } else if (!isDesktop.matches) {
-      // eslint-disable-next-line no-use-before-define
-      toggleMenu(nav, navSections, false);
-    }
-  }
-}
-
 function openOnKeydown(e) {
   const focused = document.activeElement;
   const isNavDrop = focused.className === 'nav-drop';
@@ -95,12 +80,25 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   if (!expanded || isDesktop.matches) {
     // collapse menu on escape press
     window.addEventListener('keydown', closeOnEscape);
-    // collapse menu on focus lost
-    nav.addEventListener('focusout', closeOnFocusLost);
   } else {
     window.removeEventListener('keydown', closeOnEscape);
-    nav.removeEventListener('focusout', closeOnFocusLost);
   }
+}
+
+/**
+ * Creates a close button for the dropdown
+ * @param {Element} dropdown The dropdown element
+ */
+function createCloseButton(dropdown) {
+  const closeButton = document.createElement('div');
+  closeButton.className = 'dropdown-close';
+  closeButton.setAttribute('aria-label', 'Close dropdown');
+  closeButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const navSections = dropdown.closest('.nav-sections');
+    toggleAllNavSections(navSections);
+  });
+  dropdown.appendChild(closeButton);
 }
 
 /**
@@ -135,7 +133,14 @@ export default async function decorate(block) {
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
+      if (navSection.querySelector('ul')) {
+        navSection.classList.add('nav-drop');
+        
+        // Add close button to dropdown
+        const dropdown = navSection.querySelector('ul');
+        createCloseButton(dropdown);
+      }
+      
       navSection.addEventListener('click', () => {
         if (isDesktop.matches) {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';

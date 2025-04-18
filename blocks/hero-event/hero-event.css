@@ -6,7 +6,7 @@
   box-sizing: border-box;
   overflow: visible !important; /* Override the hidden overflow to allow content to extend beyond */
   position: relative;
-  z-index: 2; /* Higher than default sections */
+  z-index: 0; /* Lower than header's z-index */
   display: block;
 }
 
@@ -24,6 +24,7 @@ body .section.hero-event-container {
 main .section.hero-event-container {
   margin-top: calc(var(--nav-height) * -1);
   padding-top: 0;
+  margin-top:0;
 }
 
 .section.hero-event-container > div {
@@ -205,7 +206,7 @@ div.section.hero-event-container > div > div > div:nth-child(6) > div:nth-child(
   margin: 0 auto;
   padding: 0 24px;
   position: relative;
-  z-index: 2;
+  z-index: 0; /* Lower than header's z-index */
 }
 
 /* Logo styling */
@@ -308,8 +309,6 @@ div.section.hero-event-container > div > div > div:nth-child(6) > div:nth-child(
   position: relative;
   overflow: hidden;
 }
-
-
 
 /* Add gradient overlays for better text visibility */
 .hero-event::before {
@@ -425,17 +424,16 @@ div.section.hero-event-container > div > div > div:nth-child(6) > div:nth-child(
   overflow-x: hidden !important;
 }
 
-/* Ensure content is above the overlay */
+/* Ensure content is above the overlay but below the header */
 .hero-event-content-container {
   position: relative;
-  z-index: 2; /* Highest z-index for content */
+  z-index: 0; /* Lower than header's z-index */
 }
 
 /* Ensure the body doesn't scroll horizontally */
 body {
   overflow-x: hidden;
 }
-
 
 /* Remove the previous swirl styles since we're now using the overlay */
 .hero-event-wrapper .swirl,
@@ -505,6 +503,7 @@ body {
   body .section.hero-event-container {
     max-height: 500px;
     min-height: 500px;
+    margin-top:0;
   }
   
   /* Adjust logo size for small mobile */
