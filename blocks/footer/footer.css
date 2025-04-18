@@ -1,6 +1,12 @@
 footer {
-  background-color: var(--light-color);
+  background-color: #032954;
   font-size: var(--body-font-size-xs);
+  color: var(--light-color);
+}
+a:any-link {
+  color: var(--light-color);
+  text-decoration: none;
+  overflow-wrap: break-word;
 }
 
 footer .footer > div {
