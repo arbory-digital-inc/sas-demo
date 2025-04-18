@@ -102,6 +102,54 @@ function createCloseButton(dropdown) {
 }
 
 /**
+ * Handles the scroll behavior to hide/show the navigation
+ */
+function handleNavScroll() {
+  let lastScrollTop = 0;
+  const scrollThreshold = 10; // Minimum scroll amount before hiding/showing
+  const hideHeaderThreshold = 500; // Only hide header after scrolling this far
+  
+  window.addEventListener('scroll', () => {
+    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const navWrapper = document.querySelector('header .nav-wrapper');
+    
+    // Don't hide nav when at the top of the page
+    if (currentScrollTop <= 0) {
+      navWrapper.classList.remove('nav-hidden');
+      return;
+    }
+    
+    // Don't hide header until scrolled past threshold
+    if (currentScrollTop < hideHeaderThreshold) {
+      navWrapper.classList.remove('nav-hidden');
+      lastScrollTop = currentScrollTop;
+      return;
+    }
+    
+    // Check if dropdown is open - don't hide nav when dropdown is open
+    const openDropdown = document.querySelector('.nav-sections .default-content-wrapper > ul > li[aria-expanded="true"]');
+    if (openDropdown) {
+      return;
+    }
+    
+    // Determine scroll direction with threshold
+    if (Math.abs(lastScrollTop - currentScrollTop) <= scrollThreshold) {
+      return;
+    }
+    
+    if (currentScrollTop > lastScrollTop) {
+      // Scrolling down
+      navWrapper.classList.add('nav-hidden');
+    } else {
+      // Scrolling up
+      navWrapper.classList.remove('nav-hidden');
+    }
+    
+    lastScrollTop = currentScrollTop;
+  }, { passive: true });
+}
+
+/**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -168,4 +216,7 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+  
+  // Initialize scroll behavior
+  handleNavScroll();
 }

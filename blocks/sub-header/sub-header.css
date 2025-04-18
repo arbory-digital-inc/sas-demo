@@ -1,0 +1,126 @@
+.sub-header-wrapper {
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.sub-header-wrapper.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9; /* Below header z-index of 10 */
+}
+
+/* When header is visible, position sub-header below it */
+.sub-header-wrapper.sticky:not(.header-hidden) {
+  top: var(--header-height, 0);
+}
+
+/* When header is hidden, position sub-header at top of viewport */
+.sub-header-wrapper.sticky.header-hidden {
+  top: 0;
+}
+
+div.section.sub-header-container {
+    padding: 0;
+    background-color: #032954;
+    margin: 0;
+    position: relative;
+    /* Margin-top will be set via JavaScript */
+}
+
+/* Styles for the sub-header when placed inside the header */
+.sub-header-in-header {
+  width: 100%;
+  background-color: #032954;
+  position: relative;
+}
+
+.sub-header-in-header .sub-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.sub-header-title p {
+    margin: 0;
+
+}
+
+.sub-header-button a {
+    margin: 0 !important;
+}
+
+/* Style the content layout */
+.sub-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.sub-header-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #fff;
+  margin: 0;
+  font-family: var(--body-font-family);
+}
+
+.sub-header-button {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sub-header-button .button-container {
+  margin: 0;
+}
+
+.sub-header-button .button {
+  display: inline-block;
+  padding: 8px 20px;
+  background-color: #0056b3;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.sub-header-button .button:hover {
+  background-color: #003d82;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .sub-header-content,
+  .sub-header-in-header .sub-header-content {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px 15px;
+  }
+  
+  .sub-header-title {
+    font-size: 1.2rem;
+  }
+  
+  .sub-header-button {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 10px;
+  }
+}
+
+/* Adjust for when it becomes sticky */
+body {
+  /* Add padding when sub-header becomes sticky to prevent content jump */
+  transition: padding-top 0.3s ease;
+}
+
+body.has-sticky-sub-header {
+  padding-top: 60px; /* Adjust based on the height of your sub-header */
+}

@@ -219,7 +219,34 @@ function buildHeroEventBlock(main) {
       // Replace original content with new structure
       container.innerHTML = '';
       container.appendChild(heroEventWrapper);
+      
+      // Adjust margin if sub-header is present
+      adjustHeroMarginForSubHeader(container);
     });
+    
+    // Function to adjust hero margin when sub-header is present
+    function adjustHeroMarginForSubHeader(heroContainer) {
+      // Check if sub-header exists and is inside the header
+      const subHeaderInHeader = document.querySelector('.sub-header-in-header');
+      
+      if (subHeaderInHeader) {
+        // Get the height of the sub-header
+        const subHeaderHeight = subHeaderInHeader.offsetHeight;
+        
+        // Apply margin to the hero container
+        if (subHeaderHeight > 0) {
+          heroContainer.style.marginTop = `${subHeaderHeight}px`;
+        }
+        
+        // Listen for window resize to adjust margin
+        window.addEventListener('resize', () => {
+          const updatedHeight = subHeaderInHeader.offsetHeight;
+          if (updatedHeight > 0) {
+            heroContainer.style.marginTop = `${updatedHeight}px`;
+          }
+        });
+      }
+    }
   }
   
   // Add the block to the blocks object for initialization
