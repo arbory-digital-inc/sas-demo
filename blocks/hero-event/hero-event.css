@@ -1,0 +1,530 @@
+.section.hero-event-container {
+  padding: 0 !important;
+  width: 100%;
+  height: 500px;
+  margin: 0;
+  box-sizing: border-box;
+  overflow: visible !important; /* Override the hidden overflow to allow content to extend beyond */
+  position: relative;
+  z-index: 2; /* Higher than default sections */
+  display: block;
+}
+
+/* Hide the label divs that contain the authoring labels */
+.hero-event > div > div:first-child {
+  display: none !important;
+}
+
+/* Ensure the hero container doesn't create a scrollbox */
+body .section.hero-event-container {
+  max-height: 900px;
+  min-height: 660px;
+}
+
+main .section.hero-event-container {
+  margin-top: calc(var(--nav-height) * -1);
+  padding-top: 0;
+}
+
+.section.hero-event-container > div {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.hero-event-container .hero-event-wrapper {
+  max-width: unset;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  box-sizing: border-box;
+  overflow: visible !important;
+}
+
+.hero-event {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: visible !important;
+  box-sizing: border-box;
+}
+
+/* Structure the hero content properly */
+.hero-event > div {
+  position: static;
+  width: 100%;
+}
+
+/* Make content container with max-width */
+.hero-event > div:not(:first-child) {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Image container styling - make it full width */
+.hero-event > div:first-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Lowest z-index for background */
+}
+
+.hero-event > div:first-child > div:last-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+div.section.hero-event-container > div > div > div:nth-child(3) > div:nth-child(2) p{
+  color: #fff;
+  margin: 8px 0;
+  font-size: 1rem;
+}
+
+div.section.hero-event-container > div > div > div:nth-child(4) > div:nth-child(2) h1,h2,h3,h4,h5,h6 {
+  color: #fff;
+  margin: 4px 0;
+}
+
+div.section.hero-event-container > div > div > div:nth-child(5) > div:nth-child(2) p {
+  color: #fff;
+  margin: 4px 0;
+  font-size: 1.5rem;
+}
+
+div.section.hero-event-container > div > div > div:nth-child(6) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: visible !important;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+div.section.hero-event-container > div > div > div:nth-child(7) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: visible !important;
+  box-sizing: border-box;
+}
+
+div.section.hero-event-container > div > div > div:nth-child(6) > div:nth-child(2) > p:nth-child(1){
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-top: 1.5rem;
+}
+
+div.section.hero-event-container > div > div > div:nth-child(6) > div:nth-child(2) > p:nth-child(1) > a{
+  border-radius: 60px !important;
+  background: #db127d !important;
+  font-family: 'anova-reg';
+  border: 1px solid #fff;
+}
+
+div.section.hero-event-container > div > div > div:nth-child(6) > div:nth-child(2) > p:nth-child(1) > a:hover{
+  transform: scale(1.05);
+  background: #c0106e !important;
+}
+
+div.section.hero-event-container > div > div > div:nth-child(6) > div:nth-child(2) > p:nth-child(2){
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin-top: 1.5rem;
+  margin-left: 14px;
+}
+
+div.section.hero-event-container > div > div > div:nth-child(6) > div:nth-child(2) > p:nth-child(2) > a{
+  border-radius: 60px !important;
+  font-family: 'anova-reg';
+  border: 1px solid #fff;
+}
+
+div.section.hero-event-container > div > div > div:nth-child(6) > div:nth-child(2) > p:nth-child(2) > a:hover{
+  transform: scale(1.05);
+}
+
+/* Add gradient overlay to the background image */
+.hero-event > div:first-child > div:last-child::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: -moz-linear-gradient(left, #000 20%, rgba(0, 0, 0, 0) 100%);
+  background: -webkit-linear-gradient(left, #000 20%, rgba(0, 0, 0, 0) 100%);
+  background: linear-gradient(to right, #000 20%, rgba(0, 0, 0, 0) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#66000000', endColorstr='#0a000000', GradientType=1);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-event > div:first-child > div:last-child picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-event > div:first-child > div:last-child img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Hero Event Content Container */
+.hero-event-content-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  height: 100%;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Logo styling */
+.hero-event-logo-container {
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 3;
+}
+
+.hero-event-logo-container img,
+.hero-event-logo-container picture,
+.hero-event-logo-container picture img {
+  max-width: 250px;
+  height: auto;
+  display: block;
+}
+
+/* Ensure all images in the hero event are visible */
+.hero-event img {
+  max-width: 100%;
+}
+
+/* Event date styling */
+.hero-event-date-container {
+  margin-bottom: 1rem;
+}
+
+.hero-event-date-container p {
+  margin: 0;
+  color: white;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Title styling */
+.hero-event-title-container {
+  margin-bottom: 1rem;
+}
+
+.hero-event-title-container h1 {
+  margin: 0;
+  font-size: 4rem;
+  color: white;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-align: left;
+  text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  line-height: 0.9;
+}
+
+/* Description styling */
+.hero-event-description-container {
+  margin-bottom: 2rem;
+}
+
+.hero-event-description-container h4 {
+  margin: 0;
+  color: white;
+  font-size: 1.5rem;
+  text-align: left;
+  max-width: 600px;
+  font-weight: 400;
+  margin-top: 0.5rem;
+}
+
+/* Button container styling */
+.hero-event-button-container {
+  margin: 0;
+  display: inline-block;
+  margin-right: 1rem;
+}
+
+.hero-event-button-container:last-child {
+  margin-right: 0;
+}
+
+/* Buttons container */
+.hero-event-buttons-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+/* Button styling */
+.hero-event .button {
+  display: inline-block;
+  padding: 12px 24px;
+  color: white !important;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: bold;
+  border: 1px solid #858585;
+  border-radius: 2px !important;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+/* Add gradient overlays for better text visibility */
+.hero-event::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 25%;
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-event::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 25%;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Apply the overlay directly to the hero-event-wrapper */
+.hero-event-wrapper::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -100px; /* Position it below the container */
+  width: 100%;
+  height: 150%; /* Make it taller to extend further down */
+  z-index: 1; /* Middle z-index - above background, below content */
+  pointer-events: none;
+  background-image: url('../../img/innovate-track-art4.png');
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 10%);
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  background-size: 100%;
+  transform: rotate(10deg) scale(0.7);
+  transform-origin: bottom center;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  /* Adjust hero height for mobile */
+  body .section.hero-event-container {
+    min-height: 500px;
+  }
+  
+  /* Hide overlay on mobile */
+  .hero-event-wrapper::before {
+    display: none;
+  }
+  
+  /* Hide background gradient overlay on mobile */
+  .hero-event > div:first-child > div:last-child::after,
+  .hero-event::before,
+  .hero-event::after {
+    display: none;
+  }
+  
+  /* Add subtle dark overlay for mobile */
+  .hero-event > div:first-child::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Subtle dark overlay */
+    z-index: 1;
+    pointer-events: none;
+  }
+  
+  /* Adjust title size for mobile */
+  .hero-event-title-container h1 {
+    font-size: 2.5rem;
+    line-height: 1.1;
+  }
+  
+  /* Adjust description size for mobile */
+  div.section.hero-event-container > div > div > div:nth-child(5) > div:nth-child(2) p {
+    font-size: 1.2rem;
+  }
+  
+  /* Stack buttons on mobile */
+  div.section.hero-event-container > div > div > div:nth-child(6) > div:nth-child(2) > p:nth-child(2) {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+  
+  /* Make buttons full width on very small screens */
+  @media (max-width: 480px) {
+    div.section.hero-event-container > div > div > div:nth-child(6) > div:nth-child(2) > p:nth-child(1) > a,
+    div.section.hero-event-container > div > div > div:nth-child(6) > div:nth-child(2) > p:nth-child(2) > a {
+      width: 100%;
+      margin-right: 10px;
+      margin-left: 20px;
+      margin-top:0;
+      text-align: center;
+    }
+  }
+}
+
+/* Make sure all containers have overflow visible for vertical overflow only */
+.hero-event-container, 
+.hero-event-wrapper, 
+.hero-event {
+  overflow-y: visible !important;
+  overflow-x: hidden !important;
+}
+
+/* Ensure content is above the overlay */
+.hero-event-content-container {
+  position: relative;
+  z-index: 2; /* Highest z-index for content */
+}
+
+/* Ensure the body doesn't scroll horizontally */
+body {
+  overflow-x: hidden;
+}
+
+
+/* Remove the previous swirl styles since we're now using the overlay */
+.hero-event-wrapper .swirl,
+.hero-event-wrapper .swirl-img,
+.hero-event-wrapper .swirl:before,
+.hero-event-wrapper::after {
+  display: none;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .section.hero-event-container {
+    height: 600px;
+    min-height: 500px;
+  }
+  
+  body .section.hero-event-container {
+    max-height: 600px;
+    min-height: 600px;
+  }
+  
+  /* Adjust logo size for mobile */
+  .hero-event-logo-container img {
+    max-width: 180px;
+  }
+  
+  /* Adjust event date for mobile */
+  .hero-event-date-container p {
+    font-size: 1rem;
+  }
+  
+  /* Adjust heading size for mobile */
+  .hero-event-title-container h1 {
+    font-size: 3rem;
+    line-height: 0.9;
+  }
+  
+  /* Adjust description for mobile */
+  .hero-event-description-container h4 {
+    font-size: 1.2rem;
+  }
+  
+  /* Adjust button styles for mobile */
+  .hero-event-buttons-container {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0.75rem;
+  }
+  
+  .hero-event .button {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+  
+  .hero-event::before,
+  .hero-event::after {
+    width: 35%;
+  }
+}
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+  .section.hero-event-container {
+    height: 500px;
+  }
+  
+  body .section.hero-event-container {
+    max-height: 500px;
+    min-height: 500px;
+  }
+  
+  /* Adjust logo size for small mobile */
+  .hero-event-logo-container img {
+    max-width: 150px;
+  }
+  
+  /* Adjust heading size for small mobile */
+  .hero-event-title-container h1 {
+    font-size: 2.5rem;
+  }
+  
+  /* Adjust description for small mobile */
+  .hero-event-description-container h4 {
+    font-size: 1rem;
+  }
+  
+  /* Adjust button size for small mobile */
+  .hero-event .button {
+    padding: 8px 16px;
+    font-size: 0.85rem;
+  }
+}
