@@ -92,24 +92,29 @@ main .section.hero-event-container {
   z-index: 0;
 }
 
-div.section.hero-event-container > div > div > div:nth-child(3) > div:nth-child(2) p{
+.section.hero-event-container > div > div > div:nth-child(3) > div:nth-child(2) p{
   color: #fff;
   margin: 8px 0;
   font-size: 1rem;
 }
 
-div.section.hero-event-container > div > div > div:nth-child(4) > div:nth-child(2) h1,h2,h3,h4,h5,h6 {
+.hero-event-container > div > div > div:nth-child(4) > div:nth-child(2) > h1,
+.hero-event-container > div > div > div:nth-child(4) > div:nth-child(2) > h2,
+.hero-event-container > div > div > div:nth-child(4) > div:nth-child(2) > h3,
+.hero-event-container > div > div > div:nth-child(4) > div:nth-child(2) > h4,
+.hero-event-container > div > div > div:nth-child(4) > div:nth-child(2) > h5,
+.hero-event-container > div > div > div:nth-child(4) > div:nth-child(2) > h6 {
   color: #fff;
   margin: 4px 0;
 }
 
-div.section.hero-event-container > div > div > div:nth-child(5) > div:nth-child(2) p {
+.hero-event-container > div > div > div:nth-child(5) > div:nth-child(2) p {
   color: #fff;
   margin: 4px 0;
   font-size: 1.5rem;
 }
 
-div.section.hero-event-container > div > div > div:nth-child(6) {
+.hero-event-container > div > div > div:nth-child(6) {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -119,7 +124,7 @@ div.section.hero-event-container > div > div > div:nth-child(6) {
   padding: 0;
 }
 
-div.section.hero-event-container > div > div > div:nth-child(7) {
+.hero-event-container > div > div > div:nth-child(7) {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -299,13 +304,10 @@ div.section.hero-event-container > div > div > div:nth-child(6) > div:nth-child(
   display: inline-block;
   padding: 12px 24px;
   color: white !important;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: bold;
+  letter-spacing: -1px;
   border: 1px solid #858585;
   border-radius: 2px !important;
-  transition: all 0.3s ease;
+  font-weight: normal;
   position: relative;
   overflow: hidden;
 }
