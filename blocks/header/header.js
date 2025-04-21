@@ -1,3 +1,4 @@
+import createSvgIcon from '../../utils/util.js';
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
@@ -86,67 +87,47 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 }
 
 /**
- * Creates a close button for the dropdown
- * @param {Element} dropdown The dropdown element
+ * Sets nav utility icons
  */
-function createCloseButton(dropdown) {
-  const closeButton = document.createElement('div');
-  closeButton.className = 'dropdown-close';
-  closeButton.setAttribute('aria-label', 'Close dropdown');
-  closeButton.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const navSections = dropdown.closest('.nav-sections');
-    toggleAllNavSections(navSections);
-  });
-  dropdown.appendChild(closeButton);
+function getNavUtils() {
+  const utils = document.createElement('div');
+  utils.classList.add('nav-utils');
+  const search = createSvgIcon('search', 25);
+  utils.append(search);
+  const locale = createSvgIcon('locale', 25);
+  utils.append(locale);
+  const contact = createSvgIcon('contact', 25);
+  utils.append(contact);
+  const dot = createSvgIcon('dot', 25);
+  utils.append(dot);
+  const profile = createSvgIcon('profile-n', 35);
+  utils.append(profile);
+  return utils;
 }
 
-/**
- * Handles the scroll behavior to hide/show the navigation
- */
-function handleNavScroll() {
-  let lastScrollTop = 0;
-  const scrollThreshold = 10; // Minimum scroll amount before hiding/showing
-  const hideHeaderThreshold = 500; // Only hide header after scrolling this far
-  
-  window.addEventListener('scroll', () => {
-    const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const navWrapper = document.querySelector('header .nav-wrapper');
-    
-    // Don't hide nav when at the top of the page
-    if (currentScrollTop <= 0) {
-      navWrapper.classList.remove('nav-hidden');
-      return;
+function handleScroll() {
+  let lastPos = 0;
+  let ticking = false;
+  document.addEventListener('scroll', () => {
+    const scrollPos = window.scrollY;
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const nav = document.querySelector('.nav-wrapper');
+        const subnav = document.querySelector('.sub-menu-wrapper');
+        const hid = nav.classList.contains('hide');
+        if (!hid && scrollPos > lastPos) {
+          nav.classList.add('hide');
+          subnav.classList.add('send-top');
+        } else if (hid && scrollPos < lastPos) {
+          nav.classList.remove('hide');
+          subnav.classList.remove('send-top');
+        }
+        lastPos = scrollPos;
+        ticking = false;
+      });
+      ticking = true;
     }
-    
-    // Don't hide header until scrolled past threshold
-    if (currentScrollTop < hideHeaderThreshold) {
-      navWrapper.classList.remove('nav-hidden');
-      lastScrollTop = currentScrollTop;
-      return;
-    }
-    
-    // Check if dropdown is open - don't hide nav when dropdown is open
-    const openDropdown = document.querySelector('.nav-sections .default-content-wrapper > ul > li[aria-expanded="true"]');
-    if (openDropdown) {
-      return;
-    }
-    
-    // Determine scroll direction with threshold
-    if (Math.abs(lastScrollTop - currentScrollTop) <= scrollThreshold) {
-      return;
-    }
-    
-    if (currentScrollTop > lastScrollTop) {
-      // Scrolling down
-      navWrapper.classList.add('nav-hidden');
-    } else {
-      // Scrolling up
-      navWrapper.classList.remove('nav-hidden');
-    }
-    
-    lastScrollTop = currentScrollTop;
-  }, { passive: true });
+  });
 }
 
 /**
@@ -183,12 +164,10 @@ export default async function decorate(block) {
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) {
         navSection.classList.add('nav-drop');
-        
         // Add close button to dropdown
-        const dropdown = navSection.querySelector('ul');
-        createCloseButton(dropdown);
+        // const dropdown = navSection.querySelector('ul');
+        // createCloseButton(dropdown);
       }
-      
       navSection.addEventListener('click', () => {
         if (isDesktop.matches) {
           const expanded = navSection.getAttribute('aria-expanded') === 'true';
@@ -208,15 +187,27 @@ export default async function decorate(block) {
   hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
+
+  // global nav parts for local search user etc...
+  const utilities = getNavUtils();
+  nav.append(utilities);
+
   // prevent mobile nav behavior on window resize
   toggleMenu(nav, navSections, isDesktop.matches);
   isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
+
   navWrapper.append(nav);
+  const subMenu = document.querySelector('.sub-menu-wrapper');
+  if (subMenu) {
+    navWrapper.append(subMenu);
+    block.parentElement.classList.add('has-submenu');
+    const container = document.querySelector('.sub-menu-container');
+    container.remove();
+  }
+
   block.append(navWrapper);
-  
-  // Initialize scroll behavior
-  handleNavScroll();
+  handleScroll();
 }
