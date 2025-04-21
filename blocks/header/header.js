@@ -1,3 +1,4 @@
+import createSvgIcon from '../../utils/util.js';
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
@@ -104,6 +105,50 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 }
 
 /**
+ * Sets nav utility icons
+ */
+function getNavUtils() {
+  const utils = document.createElement('div');
+  utils.classList.add('nav-utils');
+  const search = createSvgIcon('search', 25);
+  utils.append(search);
+  const locale = createSvgIcon('locale', 25);
+  utils.append(locale);
+  const contact = createSvgIcon('contact', 25);
+  utils.append(contact);
+  const dot = createSvgIcon('dot', 25);
+  utils.append(dot);
+  const profile = createSvgIcon('profile-n', 35);
+  utils.append(profile);
+  return utils;
+}
+
+function handleScroll() {
+  let lastPos = 0;
+  let ticking = false;
+  document.addEventListener('scroll', () => {
+    const scrollPos = window.scrollY;
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        const nav = document.querySelector('.nav-wrapper');
+        const subnav = document.querySelector('.sub-menu-wrapper');
+        const hid = nav.classList.contains('hide');
+        if (!hid && scrollPos > lastPos) {
+          nav.classList.add('hide');
+          subnav.classList.add('send-top');
+        } else if (hid && scrollPos < lastPos) {
+          nav.classList.remove('hide');
+          subnav.classList.remove('send-top');
+        }
+        lastPos = scrollPos;
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+}
+
+/**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -155,12 +200,25 @@ export default async function decorate(block) {
   hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
   nav.prepend(hamburger);
   nav.setAttribute('aria-expanded', 'false');
+
+  // global nav parts for local search user etc...
+  const utilities = getNavUtils();
+  nav.append(utilities);
+
   // prevent mobile nav behavior on window resize
   toggleMenu(nav, navSections, isDesktop.matches);
   isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';
+
   navWrapper.append(nav);
+  const subMenu = document.querySelector('.sub-menu-wrapper');
+  if (subMenu) {
+    navWrapper.append(subMenu);
+    block.parentElement.classList.add('has-submenu');
+  }
+
   block.append(navWrapper);
+  handleScroll();
 }

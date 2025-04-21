@@ -21,11 +21,6 @@ body .section.hero-container {
   min-height: 900px;
 }
 
-main .section.hero-container {
-  margin-top: calc(var(--nav-height) * -1);
-  padding-top: 0;
-}
-
 .section.hero-container > div {
   width: 100%;
   max-width: 100%;
