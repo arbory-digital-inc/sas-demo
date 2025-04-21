@@ -665,7 +665,21 @@ div.columns-75-25 {
     .group-2 {
       width: calc(25%);
     }
+    
   }
+}
+
+div.columns-75-25-gray {
+    .layout-wrapper {
+    background-color: #F8F9FB; 
+    border: 1px solid #F8F9FB; 
+    clear: both;
+    margin: 0;
+    text-align: center;
+    border-radius: 200px 0 0 200px !important;
+    width: 100vw !important;
+    position: relative;
+    }
 }
 
 div.columns-20-80 {
