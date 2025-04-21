@@ -105,6 +105,10 @@ function getNavUtils() {
   return utils;
 }
 
+/**
+ * Handle scrolling animation and functionality
+ * @param {Element} navSections
+ */
 function handleScroll(navSections) {
   let lastPos = 0;
   let ticking = false;
@@ -129,6 +133,22 @@ function handleScroll(navSections) {
       ticking = true;
     }
   });
+}
+
+/**
+ * Creates a close button for the dropdown
+ * @param {Element} dropdown The dropdown element
+ */
+function createCloseButton(dropdown) {
+  const closeButton = document.createElement('div');
+  closeButton.className = 'dropdown-close';
+  closeButton.setAttribute('aria-label', 'Close dropdown');
+  closeButton.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const navSections = dropdown.closest('.nav-sections');
+    toggleAllNavSections(navSections);
+  });
+  dropdown.prepend(closeButton);
 }
 
 /**
@@ -166,8 +186,8 @@ export default async function decorate(block) {
       if (navSection.querySelector('ul')) {
         navSection.classList.add('nav-drop');
         // Add close button to dropdown
-        // const dropdown = navSection.querySelector('ul');
-        // createCloseButton(dropdown);
+        const dropdown = navSection.querySelector('ul');
+        createCloseButton(dropdown);
       }
       navSection.addEventListener('click', () => {
         if (isDesktop.matches) {
