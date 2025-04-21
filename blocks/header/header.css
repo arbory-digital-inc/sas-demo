@@ -250,30 +250,13 @@ header nav .nav-sections ul > li > ul > li {
     z-index: 100;
     background-color: #fff;
     white-space: initial;
-    top: 150%;
-    position: absolute;
-    left: -200px;
-    width: 900px;
-    max-width: 900px;
+    position: fixed;
+    top: 64px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1180px;
+    max-width: 1180px;
     box-shadow: 0 -1px 0 0 #0056b3;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li:nth-child(3)[aria-expanded='true'] > ul,
-  header nav .nav-sections .default-content-wrapper > ul > li:nth-child(5)[aria-expanded='true'] > ul {
-    grid-template-columns: repeat(5, 1fr);
-    width: max-content;
-    max-width: 1264px;
-    left: -400px;
-    top: 41px;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li:nth-last-child(-n+2)[aria-expanded='true'] > ul {
-    left: auto;
-    right: 0;
-  }
-
-  header nav .nav-sections .default-content-wrapper > ul > li:nth-child(2)[aria-expanded='true'] > ul {
-    min-width: 900px;
   }
 
   header nav .nav-sections .default-content-wrapper > ul > li > ul > li {

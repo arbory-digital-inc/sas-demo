@@ -105,13 +105,14 @@ function getNavUtils() {
   return utils;
 }
 
-function handleScroll() {
+function handleScroll(navSections) {
   let lastPos = 0;
   let ticking = false;
   document.addEventListener('scroll', () => {
     const scrollPos = window.scrollY;
     if (!ticking) {
       window.requestAnimationFrame(() => {
+        toggleAllNavSections(navSections);
         const nav = document.querySelector('.nav-wrapper');
         const subnav = document.querySelector('.sub-menu-wrapper');
         const hid = nav.classList.contains('hide');
@@ -209,5 +210,5 @@ export default async function decorate(block) {
   }
 
   block.append(navWrapper);
-  handleScroll();
+  handleScroll(navSections);
 }
