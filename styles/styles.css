@@ -584,6 +584,18 @@ main .section {
 }
 
 /* Column layouts */
+div.columns-10-90 {
+  .layout-wrapper {
+    .group-1 {
+      width: 10%;
+    }
+
+    .group-2 {
+      width: 90%;
+    }
+  }
+}
+
 div.columns-50-50 {
   .layout-wrapper {
     .group-1 {
