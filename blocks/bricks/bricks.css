@@ -1,0 +1,61 @@
+.section.bricks-container {
+  padding: 0;
+  margin-bottom: 0;
+  margin-top: 75px;
+}
+
+.bricks-container .bricks-wrapper {
+  width: 100vw;
+  max-width: 100vw;
+  padding: 0;
+}
+
+.bricks .brick-mortar {
+  display: flex;
+  justify-content: stretch;
+}
+
+.bricks .brick-mortar > div {
+  flex: 1;
+  height: 242px;
+  padding: 80px 50px;
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+}
+
+.bricks .brick-mortar > div .button-container {
+  align-self: flex-end;
+  flex-grow: 2;
+  display: flex;
+  align-items: flex-end;
+  margin: 0;
+}
+
+.bricks .brick-mortar > div .button-container .button {
+  margin: 0;
+}
+
+.bricks .brick-mortar > div .line-space {
+  height: 1px;
+  width: 50px;
+  background-color: black;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.bricks .brick-mortar > div:first-child {
+  color: white;
+}
+
+.bricks .brick-mortar > div:first-child .line-space {
+  background-color: white;
+}
+
+.bricks .brick-mortar > div h2 {
+  font-size: 20px;
+}
+
+.bricks .brick-mortar > div p {
+  font-size: 16px;
+}

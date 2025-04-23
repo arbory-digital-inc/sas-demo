@@ -15,14 +15,9 @@ function handleStackCard(block) {
   btn.append(span);
 }
 
-function handleTopicCard(block) {
-  console.log(block);
-}
-
 export default function decorate(block) {
   /* change to ul, li */
   const isStack = block.classList.contains('stacks');
-  const isTopics = block.classList.contains('topics');
 
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
@@ -33,7 +28,6 @@ export default function decorate(block) {
       else div.className = 'cards-card-body';
     });
     if (isStack) handleStackCard(li);
-    if (isTopics) handleTopicCard(li);
     ul.append(li);
   });
   ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
