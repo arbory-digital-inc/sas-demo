@@ -98,9 +98,6 @@
   text-decoration: none;
   font-size: 1.2rem;
   transition: color 0.2s ease;
-  display: block;
-  padding-left: 0.5rem;
-  border-left: 3px solid transparent;
   line-height: 1.1;
 }
 
@@ -144,47 +141,48 @@
   background: linear-gradient(to right, rgba(255, 255, 255, 0.2), transparent);
 }
 
-/* Social entry styling */
-.social-entry {
-  padding: 0.5rem 0;
-  display: flex;
-  align-items: center;
+/* Social media buttons container */
+.social-buttons-wrapper {
+  position: fixed;
+  z-index: 100;
+  left: 20px;
+  top: 80px;
 }
 
-/* Social button styling */
+.social-buttons-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: fixed;
+  top: 80px;
+  left: 20px;
+  z-index: 100;
+}
+
+/* Social media button styling */
 .social-button {
-  display: flex !important;
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  transition: all 0.4s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  padding: 0 !important;
-  border-left: none !important;
-  margin-left: 0.5rem;
+  font-size: 0;  /* Hide any text content */
+  text-indent: -9999px;  /* Hide any text content */
+  overflow: hidden;  /* Hide any text content */
 }
 
 .social-button:hover {
-  transform: translateY(-3px) scale(1.1);
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-  filter: brightness(1.1);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .social-button svg {
   width: 20px;
   height: 20px;
   display: block;
-  transition: transform 0.3s ease;
-}
-
-.social-button:hover svg {
-  transform: scale(1.1);
-}
-
-.social-button.active {
-  border-left: none !important;
 }
 
 /* Hide on mobile */
@@ -192,10 +190,18 @@
   .desktop-only {
     display: none !important;
   }
+  
+  .social-buttons-wrapper {
+    display: none !important;
+  }
 }
 
 /* Tablet positioning */
 @media (min-width: 769px) and (max-width: 1024px) {
+  .social-buttons-container {
+    left: 15px;
+  }
+  
   .social-button {
     width: 36px;
     height: 36px;

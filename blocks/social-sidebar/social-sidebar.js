@@ -139,7 +139,7 @@ export default function decorate(block) {
         } else {
           // Normal fixed positioning
           sidebarContent.style.position = 'fixed';
-          sidebarContent.style.top = `${headerHeight}px`;
+          sidebarContent.style.top = `${headerHeight + 20}px`;
           sidebarContent.style.width = `${wrapperWidth}px`;
           
           // Calculate the correct left position to keep it in its container
@@ -153,9 +153,6 @@ export default function decorate(block) {
         sidebarContent.style.width = '';
         sidebarContent.style.left = '';
       }
-      
-      // Highlight the current section in the table of contents
-      highlightCurrentSection();
     }
     
     // Add scroll event listener

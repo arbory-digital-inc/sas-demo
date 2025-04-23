@@ -1,0 +1,200 @@
+.next-steps > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 24px;
+}
+
+.next-steps > ul > li {
+  border: 1px solid #dadada;
+  background-color: var(--background-color);
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.next-steps > ul > li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Make the entire card clickable */
+.next-steps > ul > li::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  cursor: pointer;
+}
+
+/* Ensure links are still clickable */
+.next-steps > ul > li a {
+  position: relative;
+  z-index: 2;
+}
+
+.next-steps .next-steps-card-body {
+  margin: 16px;
+  position: relative;
+  z-index: 0;
+}
+
+.next-steps .next-steps-card-image {
+  line-height: 0;
+  overflow: hidden;
+}
+
+.next-steps > ul > li img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+/* Image grow effect on hover */
+.next-steps > ul > li:hover img {
+  transform: scale(1.1);
+}
+
+/* topics variant */
+.next-steps.topics li .next-steps-card-image {
+  padding: 10px;
+  overflow: hidden;
+}
+
+.next-steps.topics li .next-steps-card-image img {
+  height: 144px;
+  border-radius: 5px;
+  transition: transform 0.5s ease;
+}
+
+.next-steps.topics li:hover .next-steps-card-image img {
+  transform: scale(1.1);
+}
+
+.next-steps.topics li .next-steps-card-body {
+  height: 230px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px 20px;
+  margin: 0;
+}
+
+.next-steps.topics li .next-steps-card-body .button-container {
+  margin: 0;
+  flex-grow: 2;
+  display: flex;
+}
+
+.next-steps.topics li .next-steps-card-body .button {
+  align-self: flex-end;
+  margin: 0;
+}
+
+/* stacks variant */
+.next-steps.stacks li:first-child {
+  grid-column: span 2;
+}
+
+.next-steps.stacks li.stacked .title {
+  background-color: #052955;
+  color: white;
+  text-align: right;
+  display: block;
+  padding: 15px;
+  font-size: 0.9em;
+}
+
+.next-steps.stacks li.stacked .next-steps-card-image img {
+  height: 271px;
+}
+
+.next-steps.stacks li.stacked .next-steps-card-body {
+  background-color: #e9eef2;
+  margin: 0;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 180px;
+  font-size: 0.9em;
+}
+
+.next-steps.stacks li.stacked .button-container,
+.next-steps.stacks li.stacked .stacklink {
+  margin: 0;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  color: #0766d1;
+  padding: 0;
+  gap: 5px;
+  height: 20px;
+}
+
+.next-steps.stacks li.stacked .stacklink .arrow {
+  font-size: 2em;
+}
+
+.next-steps .stacked {
+  display: flex;
+  flex-direction: column;
+}
+
+.next-steps .stacked .title {
+  margin: 16px 16px 0 16px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.next-steps .stacked .next-steps-card-body {
+  flex-grow: 1;
+}
+
+.next-steps .stacked .stacklink {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: #0066cc;
+  font-weight: 600;
+  margin-top: auto;
+}
+
+.next-steps .stacked .stacklink .arrow {
+  margin-left: 8px;
+  transition: transform 0.3s ease;
+}
+
+.next-steps .stacked:hover .stacklink .arrow {
+  transform: translateX(5px);
+}
+
+.next-steps-card-body p a{
+  text-decoration: none;
+  color: #000 !important;
+  background-color: transparent !important;
+  font-weight: bold !important;
+  padding: 0 !important;
+  text-align: left !important;
+  margin: 0 !important;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .next-steps > ul {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .next-steps > ul {
+    grid-template-columns: 1fr;
+  }
+}

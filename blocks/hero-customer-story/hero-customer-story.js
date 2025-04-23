@@ -11,16 +11,22 @@ export default function decorate(block) {
   // Get all content elements
   const contentElements = [...block.children];
   
-  // Create the two-column layout
+  // Create the three-column layout
   const leftColumn = document.createElement('div');
   leftColumn.className = 'hero-customer-story-left-column';
+  
+  const middleColumn = document.createElement('div');
+  middleColumn.className = 'hero-customer-story-middle-column';
   
   const rightColumn = document.createElement('div');
   rightColumn.className = 'hero-customer-story-right-column';
   
-  // Create containers for the right column
+  // Create containers for the columns
   const titleContainer = document.createElement('div');
   titleContainer.className = 'hero-customer-story-title-container';
+  
+  const logoContainer = document.createElement('div');
+  logoContainer.className = 'hero-customer-story-logo-container';
   
   const quoteContainer = document.createElement('div');
   quoteContainer.className = 'hero-customer-story-quote-container';
@@ -47,25 +53,22 @@ export default function decorate(block) {
         break;
         
       case 'title':
-        // Add title to right column at the top
+        // Add title to left column as an overlay
         titleContainer.appendChild(contentDiv.cloneNode(true));
         break;
         
       case 'quote-text':
-        // Add quote to right column
+        // Add quote to middle column
         quoteContainer.appendChild(contentDiv.cloneNode(true));
         break;
         
       case 'customer-logo':
-        // Add logo to left column (overlaid on the background image)
-        const logoContainer = document.createElement('div');
-        logoContainer.className = 'hero-customer-story-logo-container';
+        // Add logo to middle column
         logoContainer.appendChild(contentDiv.cloneNode(true));
-        leftColumn.appendChild(logoContainer);
         break;
         
       case 'icon':
-        // Add icon to right column bottom row
+        // Add icon to right column
         const iconContainer = document.createElement('div');
         iconContainer.className = 'hero-customer-story-icon-container';
         iconContainer.appendChild(contentDiv.cloneNode(true));
@@ -74,7 +77,7 @@ export default function decorate(block) {
         
       case 'icon-title':
       case 'icon-subtitle':
-        // Add stats to right column bottom row
+        // Add stats to right column
         if (!bottomRow.querySelector('.hero-customer-story-stats-container')) {
           const statsContainer = document.createElement('div');
           statsContainer.className = 'hero-customer-story-stats-container';
@@ -90,13 +93,19 @@ export default function decorate(block) {
     }
   });
   
+  // Add title to left column
+  leftColumn.appendChild(titleContainer);
+  
+  // Add elements to middle column
+  middleColumn.appendChild(logoContainer);
+  middleColumn.appendChild(quoteContainer);
+  
   // Add elements to right column
-  rightColumn.appendChild(titleContainer);
-  rightColumn.appendChild(quoteContainer);
   rightColumn.appendChild(bottomRow);
   
   // Clear the block and add the new structure
   block.innerHTML = '';
   block.appendChild(leftColumn);
+  block.appendChild(middleColumn);
   block.appendChild(rightColumn);
 }

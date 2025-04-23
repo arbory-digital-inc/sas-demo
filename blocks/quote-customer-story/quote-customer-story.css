@@ -1,0 +1,110 @@
+.quote-customer-story-wrapper{
+  margin: 3em 0;
+}
+.quote-customer-story-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* Quote mark styling */
+.quote-mark-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.quote-mark-row img {
+  width: 40px;
+  height: auto;
+  opacity: 0.7;
+}
+
+/* Quote text styling */
+.quote-text-row {
+  text-align: center;
+  font-size: 1.75rem;
+  line-height: 1.4;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.quote-text-row p {
+  margin: 0;
+}
+
+/* Image styling */
+.quote-image-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0;
+}
+
+.quote-image-row img {
+  width: 125px;
+  height: 125px;
+  object-fit: cover;
+  border: 3px solid #f5f5f5;
+}
+
+/* Attribution styling */
+.quote-attribution-row {
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.4;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.quote-name {
+  display: inline;
+}
+
+.quote-position,
+.quote-company {
+  color: #666;
+  display: inline;
+}
+
+.quote-bullet {
+  color: #999;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+  position: relative;
+  top: -1px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .quote-text-row {
+    font-size: 1.25rem;
+  }
+  
+  .quote-image-row img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+/* Small mobile adjustments */
+@media (max-width: 480px) {
+  .quote-text-row {
+    font-size: 1.1rem;
+  }
+  
+  .quote-image-row img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .quote-attribution-row {
+    font-size: 0.9rem;
+  }
+}
