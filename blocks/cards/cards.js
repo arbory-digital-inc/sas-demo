@@ -1,8 +1,29 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
+function handleStackCard(block) {
+  block.classList.add('stacked');
+  const title = block.querySelector('p strong');
+  title.parentElement.remove();
+  title.classList.add('title');
+  block.prepend(title);
+  const btn = block.querySelector('.button');
+  btn.classList.remove('button');
+  btn.classList.add('stacklink');
+  const span = document.createElement('span');
+  span.classList.add('arrow');
+  span.innerHTML = '&#x2192;';
+  btn.append(span);
+}
+
+function handleTopicCard(block) {
+  console.log(block);
+}
+
 export default function decorate(block) {
   /* change to ul, li */
   const isStack = block.classList.contains('stacks');
+  const isTopics = block.classList.contains('topics');
+
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
     const li = document.createElement('li');
@@ -11,20 +32,8 @@ export default function decorate(block) {
       if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-card-image';
       else div.className = 'cards-card-body';
     });
-    if (isStack) {
-      li.classList.add('stacked');
-      const title = li.querySelector('p strong');
-      title.parentElement.remove();
-      title.classList.add('title');
-      li.prepend(title);
-      const btn = li.querySelector('.button');
-      btn.classList.remove('button');
-      btn.classList.add('stacklink');
-      const span = document.createElement('span');
-      span.classList.add('arrow');
-      span.innerHTML = '&#x2192;';
-      btn.append(span);
-    }
+    if (isStack) handleStackCard(li);
+    if (isTopics) handleTopicCard(li);
     ul.append(li);
   });
   ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
