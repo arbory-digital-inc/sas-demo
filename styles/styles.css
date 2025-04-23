@@ -681,17 +681,17 @@ div.columns-75-25 {
   }
 }
 
-div.columns-75-25-gray {
-    .layout-wrapper {
-    background-color: #F8F9FB; 
-    border: 1px solid #F8F9FB; 
-    clear: both;
-    margin: 0;
-    text-align: center;
-    border-radius: 200px 0 0 200px !important;
-    width: 100vw !important;
-    position: relative;
-    }
+.grey-rounded-left {
+  background-color: #f7f9fb; 
+  border-radius: 200px 0 0 200px;
+  position: relative;
+  left: 20px;
+  min-height: 284px;
+}
+
+.grey-rounded-left > * {
+  position: relative;
+  right: 20px;
 }
 
 div.columns-20-80 {
@@ -1004,8 +1004,11 @@ div.columns-80-20 {
   }
 }
 
-.section-vertical-center {
+.section.center {
+  text-align: center;
+}
 
+.section-vertical-center {
   .group-1,
   .group-2 {
     display: flex;

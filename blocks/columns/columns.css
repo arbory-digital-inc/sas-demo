@@ -15,8 +15,24 @@
   order: 0;
 }
 
-.columns > div > .columns-img-col img {
-  display: block;
+.columns.img-round .columns-img-col p {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  position: relative;
+  left: -100px;
+}
+
+.columns.img-round .columns-img-col a {
+  display: flex;
+  align-items: center;
+  padding-top: 10px;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid #eee;
+  border-radius: 50%;
+  width: 162px;
+  height: 152px;
 }
 
 @media (width >= 900px) {
@@ -31,11 +47,3 @@
     order: unset;
   }
 }
-
-.gray-container {
-    background-color: #f0f0f0d7; 
-    padding: 20px;
-    border-radius: 8px; 
-    border: 1px solid #ccc; 
-    margin: 20px 0; 
-  }
