@@ -3,6 +3,7 @@ footer {
   font-size: var(--body-font-size-xs);
   color: var(--light-color);
 }
+
 footer a:any-link {
   color: var(--light-color);
   text-decoration: none;
@@ -17,6 +18,22 @@ footer .footer > div {
 
 footer .footer p {
   margin: 0;
+}
+
+footer .columns-40-60 .columns-2-cols > div > div:first-child {
+  width: 35%;
+  flex: unset;
+}
+
+footer .columns-40-60 .columns-2-cols > div > div:last-child {
+  width: 65%;
+  flex: unset;
+  display: flex;
+  flex-direction: row;
+}
+
+footer .columns-40-60 .columns-2-cols > div > div:last-child ul {
+  list-style: none;
 }
 
 @media (width >= 900px) {
