@@ -120,7 +120,7 @@ function handleScroll(navSections) {
         const nav = document.querySelector('.nav-wrapper');
         const subnav = document.querySelector('.sub-menu-wrapper');
         const hid = nav.classList.contains('hide');
-        if (!hid && scrollPos > lastPos) {
+        if (!hid && scrollPos > lastPos && scrollPos > 100) {
           nav.classList.add('hide');
           subnav.classList.add('send-top');
         } else if (hid && scrollPos < lastPos) {
