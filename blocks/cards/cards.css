@@ -26,6 +26,35 @@
   object-fit: cover;
 }
 
+/* topics variant */
+.cards.topics li .cards-card-image {
+  padding: 10px;
+}
+
+.cards.topics li .cards-card-image img {
+  height: 144px;
+  border-radius: 5px;
+}
+
+.cards.topics li .cards-card-body {
+  height: 230px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px 20px;
+  margin: 0;
+}
+
+.cards.topics li .cards-card-body .button-container {
+  margin: 0;
+  flex-grow: 2;
+  display: flex;
+}
+
+.cards.topics li .cards-card-body .button {
+  align-self: flex-end;
+  margin: 0;
+}
+
 /* stacks variant */
 .cards.stacks li:first-child {
   grid-column: span 2;
