@@ -25,3 +25,49 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
+
+/* stacks variant */
+.cards.stacks li:first-child {
+  grid-column: span 2;
+}
+
+.cards.stacks li.stacked .title {
+  background-color: #052955;
+  color: white;
+  text-align: right;
+  display: block;
+  padding: 15px;
+  font-size: 0.9em;
+}
+
+.cards.stacks li.stacked .cards-card-image img {
+  height: 271px;
+}
+
+.cards.stacks li.stacked .cards-card-body {
+  background-color: #e9eef2;
+  margin: 0;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 180px;
+  font-size: 0.9em;
+}
+
+.cards.stacks li.stacked .button-container,
+.cards.stacks li.stacked .stacklink {
+  margin: 0;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  color: #0766d1;
+  padding: 0;
+  gap: 5px;
+  height: 20px;
+}
+
+.cards.stacks li.stacked .stacklink .arrow {
+  font-size: 2em;
+}

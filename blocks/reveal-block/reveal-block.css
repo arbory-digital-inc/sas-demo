@@ -1,0 +1,72 @@
+.reveal-block {
+  display: flex;
+  gap: 10px;
+  background-color: #f7f9fb;
+  padding: 20px;
+}
+
+.reveal-block .menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 30%;
+}
+
+.reveal-block .menu .select-btn {
+  background-color: white;
+  text-align: center;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.reveal-block .menu .select-btn p {
+  margin: 0;
+}
+
+.reveal-block .menu .select-btn:hover,
+.reveal-block .menu .select-btn[aria-selected='true'] {
+  box-shadow: 3px 3px 6px #666;
+}
+
+.reveal-block .menu .select-btn[aria-selected='true'] {
+  border-left: 10px solid #0766D1;
+}
+
+.reveal-block .content {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  padding: 30px;
+  text-align: center;
+  font-size: 0.9em;
+  width: 70%;
+  align-items: center;
+  justify-content: center;
+}
+
+.reveal-block .content .content-item[aria-selected='false'] {
+  display: none;
+}
+
+.reveal-block .content .content-item .button-container,
+.reveal-block .content .content-item .stacklink {
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  color: #0766d1;
+  padding: 0;
+  gap: 5px;
+  height: 20px;
+  margin: 0 auto;
+  margin-top: 30px;
+  transition: font-size .3s;
+}
+
+.reveal-block .content .content-item .stacklink .arrow {
+  font-size: 2em;
+}
+
+.reveal-block .content .content-item .stacklink:hover {
+  font-size: 1.2em;
+}
