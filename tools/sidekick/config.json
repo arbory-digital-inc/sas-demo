@@ -9,6 +9,21 @@
       "environments": ["edit"],
       "daLibrary": true,
       "url": "https://main--sas-demo--arbory-digital-inc.aem.live/tools/tags.html"
+    },
+    {
+      "id": "rollout",
+      "title": "Rollout",
+      "environments": [
+        "edit"
+      ],
+      "daLibrary": true,
+      "experience": "dialog",
+      "dialogSize": "medium",
+      "includePaths": [
+        "DA"
+      ],
+      "icon": "https://da.live/nx/public/plugins/rollout/media_195da69764de2782d555abed3042d8434a040e31c.png",
+      "url": "https://da.live/nx/public/plugins/rollout.html"
     }
   ]
 }
