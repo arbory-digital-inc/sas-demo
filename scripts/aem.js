@@ -396,30 +396,59 @@ function decorateButtons(element) {
     a.title = a.title || a.textContent;
     if (a.href !== a.textContent) {
       const up = a.parentElement;
-      const twoup = a.parentElement.parentElement;
+      // const twoup = a.parentElement.parentElement;
+
       if (!a.querySelector('img')) {
         if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
-          a.className = 'button'; // default
+          a.className = 'link'; // default
           up.classList.add('button-container');
+          if (a.innerText.charAt(0) === '{') {
+            a.className = 'button';
+            let exp = /\{|\}/;
+            if (a.innerText.charAt(1) === '{') {
+              exp = /\{{|\}}/;
+              a.classList.add('pink');
+            }
+            const textBetween = a.innerText.split(exp);
+            const text = textBetween[1];
+            a.innerText = text.trim();
+            a.title = a.title.charAt(0) === '{' ? text.trim() : a.title;
+          }
+          if (a.innerText.charAt(0) === '[') {
+            a.classList.add('button', 'secondary');
+            const textBetween = a.innerText.split(/\[|\]/);
+            const text = textBetween[1];
+            a.innerText = text.trim();
+            a.title = a.title.charAt(0) === '{' ? text.trim() : a.title;
+          }
+          if (a.innerText.charAt(a.innerText.length - 1) === '>') {
+            a.className = 'arrow-button';
+            a.innerText = a.innerText.slice(0, -1);
+            const span = document.createElement('span');
+            span.classList.add('arrow');
+            span.innerHTML = '&#x2192;';
+            a.append(span);
+          }
         }
-        if (
-          up.childNodes.length === 1
-          && up.tagName === 'STRONG'
-          && twoup.childNodes.length === 1
-          && twoup.tagName === 'P'
-        ) {
-          a.className = 'button primary';
-          twoup.classList.add('button-container');
-        }
-        if (
-          up.childNodes.length === 1
-          && up.tagName === 'EM'
-          && twoup.childNodes.length === 1
-          && twoup.tagName === 'P'
-        ) {
-          a.className = 'button secondary';
-          twoup.classList.add('button-container');
-        }
+
+        // if (
+        //   up.childNodes.length === 1
+        //   && up.tagName === 'STRONG'
+        //   && twoup.childNodes.length === 1
+        //   && twoup.tagName === 'P'
+        // ) {
+        //   a.className = 'button primary';
+        //   twoup.classList.add('button-container');
+        // }
+        // if (
+        //   up.childNodes.length === 1
+        //   && up.tagName === 'EM'
+        //   && twoup.childNodes.length === 1
+        //   && twoup.tagName === 'P'
+        // ) {
+        //   a.className = 'button secondary';
+        //   twoup.classList.add('button-container');
+        // }
       }
     }
   });

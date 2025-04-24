@@ -187,6 +187,7 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: font-size .3s;
 }
 
 a.button:hover,
@@ -195,6 +196,11 @@ button:hover,
 button:focus {
   background-color: var(--link-hover-color);
   cursor: pointer;
+  font-size: 1.1em;
+}
+
+a.button.pink {
+  background-color: #db127d;
 }
 
 button:disabled,
@@ -206,8 +212,24 @@ button:disabled:hover {
 a.button.secondary,
 button.secondary {
   background-color: unset;
-  border: 2px solid currentcolor;
-  color: var(--text-color);
+  border: 2px solid var(--link-color);
+  color: var(--link-color);
+}
+
+a.arrow-button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: font-size .3s;
+}
+
+a.arrow-button:hover {
+  text-decoration: none;
+  font-size: 1.1em;
+}
+
+a.arrow-button .arrow {
+  font-size: 2em;
 }
 
 main img {
