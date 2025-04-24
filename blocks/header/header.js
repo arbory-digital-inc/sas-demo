@@ -111,27 +111,25 @@ function getNavUtils() {
  */
 function handleScroll(navSections) {
   let lastPos = 0;
-  let ticking = false;
+
   document.addEventListener('scroll', () => {
-    const scrollPos = window.scrollY;
-    if (!ticking) {
-      window.requestAnimationFrame(() => {
-        toggleAllNavSections(navSections);
-        const nav = document.querySelector('.nav-wrapper');
-        const subnav = document.querySelector('.sub-menu-wrapper');
-        const hid = nav.classList.contains('hide');
-        if (!hid && scrollPos > lastPos && scrollPos > 100) {
-          nav.classList.add('hide');
-          subnav.classList.add('send-top');
-        } else if (hid && scrollPos < lastPos) {
-          nav.classList.remove('hide');
-          subnav.classList.remove('send-top');
-        }
-        lastPos = scrollPos;
-        ticking = false;
-      });
-      ticking = true;
-    }
+    const scrollPos = window.scrollY
+      || document.documentElement.scrollTop || document.body.scrollTop || 0;
+
+    window.requestAnimationFrame(() => {
+      toggleAllNavSections(navSections);
+      const nav = document.querySelector('.nav-wrapper');
+      const subnav = document.querySelector('.sub-menu-wrapper');
+      const hid = nav.classList.contains('hide');
+      if (!hid && scrollPos > lastPos && scrollPos > 100) {
+        nav.classList.add('hide');
+        subnav.classList.add('send-top');
+      } else if (hid && scrollPos < lastPos) {
+        nav.classList.remove('hide');
+        subnav.classList.remove('send-top');
+      }
+      lastPos = scrollPos;
+    });
   });
 }
 
