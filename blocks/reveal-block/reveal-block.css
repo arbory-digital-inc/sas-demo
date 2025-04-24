@@ -47,27 +47,3 @@
 .reveal-block .content .content-item[aria-selected='false'] {
   display: none;
 }
-
-.reveal-block .content .content-item .button-container,
-.reveal-block .content .content-item .stacklink {
-  font-size: 1em;
-  display: flex;
-  align-items: center;
-  background-color: transparent;
-  color: #0766d1;
-  padding: 0;
-  gap: 5px;
-  height: 20px;
-  margin: 0 auto;
-  margin-top: 30px;
-  transition: font-size .3s;
-}
-
-.reveal-block .content .content-item .stacklink .arrow {
-  font-size: 2em;
-}
-
-.reveal-block .content .content-item .stacklink:hover {
-  text-decoration: none;
-  font-size: 1.2em;
-}

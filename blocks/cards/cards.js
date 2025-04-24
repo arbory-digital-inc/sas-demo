@@ -6,13 +6,6 @@ function handleStackCard(block) {
   title.parentElement.remove();
   title.classList.add('title');
   block.prepend(title);
-  const btn = block.querySelector('.button');
-  btn.classList.remove('button');
-  btn.classList.add('stacklink');
-  const span = document.createElement('span');
-  span.classList.add('arrow');
-  span.innerHTML = '&#x2192;';
-  btn.append(span);
 }
 
 export default function decorate(block) {

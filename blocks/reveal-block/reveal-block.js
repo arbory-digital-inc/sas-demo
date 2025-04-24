@@ -24,13 +24,6 @@ export default function decorate(block) {
     contentItem.classList.add('content-item');
     contentItem.setAttribute('aria-selected', i === 0);
     content.append(contentItem);
-    const btn = content.querySelector('.button');
-    btn.classList.remove('button');
-    btn.classList.add('stacklink');
-    const span = document.createElement('span');
-    span.classList.add('arrow');
-    span.innerHTML = '&#x2192;';
-    btn.append(span);
   });
   block.replaceChildren(menu, content);
 }
