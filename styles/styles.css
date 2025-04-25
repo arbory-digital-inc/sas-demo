@@ -161,15 +161,20 @@ a:any-link {
 }
 
 a:hover {
-  color: var(--link-hover-color);
   text-decoration: underline;
+}
+
+a.link:any-link {
+  display: inline-flex;
+  gap: 5px;
 }
 
 /* buttons */
 a.button:any-link,
 button {
   box-sizing: border-box;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   max-width: 100%;
   margin: 12px 0;
   border: 2px solid transparent;
@@ -178,7 +183,7 @@ button {
   font-family: var(--body-font-family);
   font-style: normal;
   font-weight: 300;
-  line-height: 1.25;
+  line-height: 28px;
   text-align: center;
   text-decoration: none;
   background-color: var(--link-color);
@@ -187,20 +192,46 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  transition: font-size .3s;
+  will-change: transform;
+  transition: transform 0.5s ease;
+}
+
+a.button img {
+  position: relative;
+  left: 10px;
+  filter: invert(100%) sepia(0%) saturate(7479%) hue-rotate(263deg) brightness(105%) contrast(105%);
+}
+
+a.link img,
+a.button.outline img {
+  filter: invert(23%) sepia(99%) saturate(2025%) hue-rotate(201deg) brightness(97%) contrast(95%);
+}
+
+a.has-icon {
+  -webkit-font-smoothing: subpixel-antialiased;
+  will-change: transform;
+  transition: transform 0.5s ease;
 }
 
 a.button:hover,
 a.button:focus,
 button:hover,
-button:focus {
-  background-color: var(--link-hover-color);
+button:focus,
+a.has-icon:hover,
+a.has-icon:focus {
   cursor: pointer;
-  font-size: 1.1em;
+  text-decoration: none;
+  -webkit-font-smoothing: subpixel-antialiased;
+  transform: scale(1.09);
+  filter: blur(0);
 }
 
-a.button.pink {
+a.button.secondary {
   background-color: #db127d;
+}
+
+a.button.terciary {
+  background-color: #0c2854;
 }
 
 button:disabled,
@@ -209,27 +240,17 @@ button:disabled:hover {
   cursor: unset;
 }
 
-a.button.secondary,
-button.secondary {
+a.button.outline,
+button.outline {
   background-color: unset;
   border: 2px solid var(--link-color);
   color: var(--link-color);
 }
 
-a.arrow-button {
+.button-group,
+.button-group p {
   display: flex;
-  align-items: center;
-  gap: 5px;
-  transition: font-size .3s;
-}
-
-a.arrow-button:hover {
-  text-decoration: none;
-  font-size: 1.1em;
-}
-
-a.arrow-button .arrow {
-  font-size: 2em;
+  gap: 10px;
 }
 
 main img {
@@ -1167,7 +1188,7 @@ footer .transparent-footer-wrapper,
   }
 
   .button-container:last-child {
-    margin: 0 0 3.2rem 0 !important;
+    margin: 0 0 3.2rem !important;
   }
 
   &.text-link .button-container {

@@ -396,59 +396,39 @@ function decorateButtons(element) {
     a.title = a.title || a.textContent;
     if (a.href !== a.textContent) {
       const up = a.parentElement;
-      // const twoup = a.parentElement.parentElement;
-
       if (!a.querySelector('img')) {
-        if (up.childNodes.length === 1 && (up.tagName === 'P' || up.tagName === 'DIV')) {
+        if (up.tagName === 'P' || up.tagName === 'DIV') {
           a.className = 'link'; // default
-          up.classList.add('button-container');
-          if (a.innerText.charAt(0) === '{') {
-            a.className = 'button';
-            let exp = /\{|\}/;
-            if (a.innerText.charAt(1) === '{') {
-              exp = /\{{|\}}/;
-              a.classList.add('pink');
-            }
-            const textBetween = a.innerText.split(exp);
-            const text = textBetween[1];
-            a.innerText = text.trim();
-            a.title = a.title.charAt(0) === '{' ? text.trim() : a.title;
+          if (up.childNodes.length > 1) {
+            up.classList.add('button-group');
+            [...up.childNodes].forEach((node) => {
+              if (!node.tagName) node.remove();
+            });
           }
           if (a.innerText.charAt(0) === '[') {
-            a.classList.add('button', 'secondary');
-            const textBetween = a.innerText.split(/\[|\]/);
+            a.className = 'button';
+            let exp = /\[(.*?)\]/;
+            // secondary btn
+            if (a.innerText.charAt(1) === '[' && a.innerText.charAt(2) !== '[') {
+              exp = /\[\[(.*?)\]\]/;
+              a.classList.add('secondary');
+            }
+            // terciary btn
+            if (a.innerText.charAt(2) === '[') {
+              exp = /\[\[\[(.*?)\]\]\]/;
+              a.classList.add('terciary');
+            }
+            // outline btn
+            if (a.innerText.charAt(1) === '(') {
+              exp = /\[\((.*?)\)\]/;
+              a.classList.add('outline');
+            }
+            const textBetween = a.innerHTML.split(exp);
             const text = textBetween[1];
-            a.innerText = text.trim();
-            a.title = a.title.charAt(0) === '{' ? text.trim() : a.title;
-          }
-          if (a.innerText.charAt(a.innerText.length - 1) === '>') {
-            a.className = 'arrow-button';
-            a.innerText = a.innerText.slice(0, -1);
-            const span = document.createElement('span');
-            span.classList.add('arrow');
-            span.innerHTML = '&#x2192;';
-            a.append(span);
-          }
+            a.innerHTML = text;
+            a.title = a.title.charAt(0) === '[' ? a.title.split(exp)[1]?.trim() : a.title;
+          } else if (a.querySelector('span.icon')) a.classList.add('has-icon');
         }
-
-        // if (
-        //   up.childNodes.length === 1
-        //   && up.tagName === 'STRONG'
-        //   && twoup.childNodes.length === 1
-        //   && twoup.tagName === 'P'
-        // ) {
-        //   a.className = 'button primary';
-        //   twoup.classList.add('button-container');
-        // }
-        // if (
-        //   up.childNodes.length === 1
-        //   && up.tagName === 'EM'
-        //   && twoup.childNodes.length === 1
-        //   && twoup.tagName === 'P'
-        // ) {
-        //   a.className = 'button secondary';
-        //   twoup.classList.add('button-container');
-        // }
       }
     }
   });
