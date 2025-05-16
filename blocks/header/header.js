@@ -59,8 +59,20 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   const button = nav.querySelector('.nav-hamburger button');
   document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
   nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-  toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
+  
+  // Always ensure all sections are collapsed when opening the mobile menu
+  if (!expanded && !isDesktop.matches) {
+    // Explicitly set all dropdown sections to collapsed
+    navSections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
+      section.setAttribute('aria-expanded', 'false');
+    });
+  } else {
+    // Desktop behavior or closing the menu
+    toggleAllNavSections(navSections, expanded || isDesktop.matches ? 'false' : 'true');
+  }
+  
   button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
+  
   // enable nav dropdown keyboard accessibility
   const navDrops = navSections.querySelectorAll('.nav-drop');
   if (isDesktop.matches) {
@@ -143,8 +155,10 @@ function createCloseButton(dropdown) {
   closeButton.setAttribute('aria-label', 'Close dropdown');
   closeButton.addEventListener('click', (e) => {
     e.stopPropagation();
-    const navSections = dropdown.closest('.nav-sections');
-    toggleAllNavSections(navSections);
+    const parentLi = dropdown.closest('li');
+    if (parentLi) {
+      parentLi.setAttribute('aria-expanded', 'false');
+    }
   });
   dropdown.prepend(closeButton);
 }
@@ -186,11 +200,52 @@ export default async function decorate(block) {
         // Add close button to dropdown
         const dropdown = navSection.querySelector('ul');
         createCloseButton(dropdown);
+        
+        // Set all sections to collapsed by default
+        navSection.setAttribute('aria-expanded', 'false');
       }
-      navSection.addEventListener('click', () => {
+      navSection.addEventListener('click', (e) => {
+        // Check if this is a regular link without dropdown
+        const hasDropdown = navSection.querySelector('ul') !== null;
+        
+        // If it's a link without dropdown, let the link work normally
+        if (!hasDropdown) {
+          // If we're clicking directly on a link, let it work normally
+          if (e.target.tagName === 'A') {
+            return; // Allow the link to work normally
+          }
+          
+          // If we're clicking on the paragraph that contains a link, trigger the link
+          if (e.target.tagName === 'P') {
+            const link = e.target.querySelector('a');
+            if (link) {
+              // Programmatically click the link
+              link.click();
+              return;
+            }
+          }
+          
+          return; // No dropdown to toggle
+        }
+        
+        // Don't trigger if clicking on a child element that's not the main section
+        if (e.target !== navSection && !navSection.contains(e.target.closest('p, a'))) {
+          return;
+        }
+        
+        // Prevent default to stop link navigation when clicking on dropdown headers
+        if (e.target.tagName === 'A' || e.target.tagName === 'P') {
+          e.preventDefault();
+        }
+        
+        const expanded = navSection.getAttribute('aria-expanded') === 'true';
+        
         if (isDesktop.matches) {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
+          // On desktop, close all sections first
           toggleAllNavSections(navSections);
+          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        } else {
+          // On mobile, just toggle this section
           navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
         }
       });

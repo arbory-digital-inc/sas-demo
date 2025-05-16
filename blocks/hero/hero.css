@@ -1,13 +1,14 @@
+/* Default hero container styles */
 .section.hero-container {
   padding: 0 !important;
   width: 100%;
-  height: 800px;
   margin: 0;
   box-sizing: border-box;
   overflow: hidden;
   position: relative;
-  z-index: 0;
+  z-index: 1; /* Ensure it's above regular content but below sticky elements */
   display: block;
+  margin-top: var(--sub-header-height, 0); /* Add space for sub-header if present */
 }
 
 /* Hide the label divs that contain the authoring labels */
@@ -15,12 +16,9 @@
   display: none !important;
 }
 
-/* Ensure the hero container doesn't create a scrollbox */
-body .section.hero-container {
-  max-height: 900px;
-  min-height: 900px;
-}
 
+
+/* Default hero section container styles */
 .section.hero-container > div {
   width: 100%;
   max-width: 100%;
@@ -29,7 +27,8 @@ body .section.hero-container {
   box-sizing: border-box;
 }
 
-.hero-container .hero-wrapper {
+/* Default hero wrapper styles */
+.section.hero-container .hero-wrapper {
   max-width: unset;
   padding: 0;
   width: 100%;
@@ -60,7 +59,7 @@ body .section.hero-container {
 
 /* Make content container with max-width */
 .hero > div:not(:first-child) {
-  max-width: 1440px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
   position: relative;
@@ -81,7 +80,7 @@ body .section.hero-container {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   z-index: 0;
 }
@@ -90,7 +89,7 @@ body .section.hero-container {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   z-index: 0;
 }
@@ -102,7 +101,7 @@ body .section.hero-container {
 }
 
 .hero > div:first-child > div:last-child img {
-  width: 100vw;
+  width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
@@ -111,13 +110,17 @@ body .section.hero-container {
 /* Title styling */
 .hero > div:nth-child(2) > div:last-child {
   margin-bottom: 1rem;
+  
+  h1,h2,h3,h4,h5,h6{
+    max-width: 40%;
+    font-size: 2.5rem;
+  }
 }
 
 .hero > div:nth-child(2) > div:last-child h1 {
   margin: 0;
   font-size: 200px;
   color: white;
-  font-family: "Hitmarker Condensed Black", sans-serif !important;
   font-weight: 900;
   letter-spacing: 1px;
   text-align: left;
@@ -150,71 +153,22 @@ body .section.hero-container {
   padding: 0;
 }
 
-.hero .button {
-  display: inline-block;
-  padding: 12px 24px;
-  background: rgba(255, 255, 255, 0.12);
-  color: white !important;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  font-family: 'Hitmarker Text Bold' !important;
-  font-weight: bold;
-  border: 1px solid #858585;
-  border-radius: 2px !important;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
 
-.hero .button::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.2),
-    transparent
-  );
-  transition: 0.5s;
-}
 
-.hero .button:hover::after {
-  left: 100%;
-}
-
-.hero .button:hover {
-  background: rgba(27, 27, 27, 0.8);
-}
-
-/* Add gradient overlays for better text visibility */
-.hero::before {
+/* Add gradient overlays for better text visibility - default hero only */
+.hero:not(.about)::before {
   content: '';
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
-  width: 25%;
-  background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
+  width: 75%;
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0) 30%, #fff 65%);
   z-index: 1;
   pointer-events: none;
 }
 
-.hero::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 25%;
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 100%);
-  z-index: 1;
-  pointer-events: none;
-}
+
 
 /* Create a content container to group all content elements */
 .hero-content-container {
@@ -231,68 +185,278 @@ body .section.hero-container {
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
+
+  .hero:not(.about){
+    height: 450px !important;
+  }
+  /* About variant specific mobile styles */
+  .hero.about {
+    height: auto;
+  }
+  
+  .hero.about .hero-image-container {
+    height: 350px;
+    min-height: 350px;
+    position: relative;
+  }
+  
   .section.hero-container {
-    height: 600px; /* Reduce height on mobile */
-    min-height: 500px;
+    height: auto; /* Auto height to accommodate stacked content */
+    min-height: auto;
+    width: 100%;
+    overflow: hidden;
   }
   
   body .section.hero-container {
-    max-height: 600px;
-    min-height: 600px;
+    max-height: none;
+    min-height: auto;
+  }
+  
+  /* Mobile hero layout */
+  .hero {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  /* Image row */
+  .hero > div:first-child,
+  .hero .hero-image-container {
+    position: relative;
+    height: 350px; /* Increased height for image row */
+    width: 100%;
+    order: 1;
+  }
+  
+  /* Title row */
+  .hero > div:nth-child(2),
+  .hero .hero-title-container {
+    position: relative;
+    width: 100%;
+    order: 2;
+    padding: 0;
+    background-color: var(--background-color-2, #f5f5f5);
+  }
+  
+  /* Button/link row */
+  .hero > div:nth-child(3),
+  .hero .hero-button-container {
+    position: relative;
+    width: 100%;
+    order: 3;
+    padding: 0;
+    background-color: var(--background-color-2, #f5f5f5);
+    text-align: center;
+  }
+  
+  /* Description row if present */
+  .hero > div:nth-child(4),
+  .hero .hero-description-container {
+    position: relative;
+    width: 100%;
+    order: 3; /* Same as button to keep them together */
+    padding: 0;
+    background-color: var(--background-color-2, #f5f5f5);
   }
   
   /* Adjust heading size for mobile */
-  .hero > div:nth-child(2) > div:last-child h1 {
-    font-size: 80px; /* Smaller font size for mobile */
-    line-height: 0.9;
+  .hero > div:nth-child(2) > div:last-child h1,
+  .hero .hero-title-container h1,
+  .hero .hero-title-container h2,
+  .hero .hero-title-container h3,
+  .hero .hero-title-container h4 {
+    font-size: 2rem; /* Smaller font size for mobile */
+    line-height: 1.2;
+    margin: 0;
+    text-align: center;
+    max-width: 100%;
   }
   
   /* Adjust paragraph size and spacing for mobile */
-  .hero > div:nth-child(4) > div:last-child p {
+  .hero > div:nth-child(4) > div:last-child p,
+  .hero .hero-description-container p {
     font-size: 1.2rem;
+    text-align: center;
+    max-width: 100%;
   }
   
-  /* Adjust button styles for mobile */
-  .hero > div:nth-child(3) > div:last-child {
-    margin-top: 0.5rem;
-    margin-bottom: 0.5rem;
+  /* Center and adjust button styles for mobile */
+  .hero > div:nth-child(3) > div:last-child,
+  .hero .hero-button-container {
+    margin: 0;
+    display: flex;
+    justify-content: center;
   }
   
   .hero .button {
     padding: 10px 20px;
     font-size: 0.9rem;
+    display: inline-block;
   }
   
-  .hero::before,
-  .hero::after {
-    width: 35%;
+  /* Adjust gradient for mobile */
+  .hero::before {
+    width: 100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+    height: 0%;
+    bottom: auto;
+  }
+  
+  .hero > div:nth-child(2) > div:last-child {
+    margin-bottom: 0;
+
+    h1,h2,h3,h4,h5,h6{
+      max-width: 100%;
+      text-align: center;
+      padding-top: 1rem;
+      font-size: 1.5rem;
+    }
+  }
+  
+  /* Content container positioning */
+  .hero-content-container {
+    position: relative;
+    height: auto;
+    background-color: var(--background-color-2, #f5f5f5);
   }
 }
 
 /* Small mobile adjustments */
 @media (max-width: 480px) {
-  .section.hero-container {
-    height: 500px; /* Further reduce height on small mobile */
+  /* About variant specific small mobile styles */
+  .hero.about .hero-image-container {
+    height: 350px;
+    min-height: 350px;
   }
   
-  body .section.hero-container {
-    max-height: 500px;
-    min-height: 500px;
+  /* Image row - still substantial height on small mobile */
+  .hero > div:first-child,
+  .hero .hero-image-container {
+    height: 350px;
+  }
+  
+  /* Smaller padding for content sections */
+  .hero > div:nth-child(2),
+  .hero .hero-title-container,
+  .hero > div:nth-child(3),
+  .hero .hero-button-container,
+  .hero > div:nth-child(4),
+  .hero .hero-description-container {
+    padding: 0.75rem;
   }
   
   /* Adjust heading size for small mobile */
-  .hero > div:nth-child(2) > div:last-child h1 {
-    font-size: 60px; /* Even smaller font size for small mobile */
+  .hero > div:nth-child(2) > div:last-child h1,
+  .hero .hero-title-container h1,
+  .hero .hero-title-container h2,
+  .hero .hero-title-container h3,
+  .hero .hero-title-container h4 {
+    font-size: 1.75rem;
   }
   
-  /* Adjust paragraph size for small mobile */
-  .hero > div:nth-child(4) > div:last-child p {
+  /* Smaller text for descriptions */
+  .hero > div:nth-child(4) > div:last-child p,
+  .hero .hero-description-container p {
     font-size: 1rem;
   }
   
-  /* Adjust button size for small mobile */
+  /* Smaller buttons */
   .hero .button {
     padding: 8px 16px;
     font-size: 0.9rem;
+  }
+}
+
+.hero:not(.about) {
+  height: 660px;
+}
+
+/* About Hero Variant */
+.hero.about {
+  height: 660px;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Direct gradient overlay for about variant */
+.hero.about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0) 30%, #fff 85%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero.about .hero-image-container {
+  height: 660px;
+  min-height: 660px;
+  position: absolute;
+  width: 100%;
+}
+
+.hero.about .hero-image-container img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: right center;
+}
+
+.hero.about .hero-image-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: linear-gradient(270deg, rgba(255, 255, 255, 0) 30%, #fff 65%);
+  z-index: 1;
+  pointer-events: none;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: block !important;
+}
+
+/* Remove default gradients for about variant */
+.hero.about .gradients {
+  display: none;
+}
+
+/* Ensure content is left-aligned */
+.hero.about .hero-content-container {
+  padding-left: 5%;
+  align-items: flex-start;
+}
+
+/* Adjust text colors for better visibility against the white gradient */
+.hero.about .hero-title-container h1,
+.hero.about .hero-title-container h2,
+.hero.about .hero-title-container h3,
+.hero.about .hero-title-container h4,
+.hero.about .hero-description-container p {
+  color: var(--text-color, #333);
+  text-shadow: none;
+}
+
+
+/* Mobile adjustments for about variant */
+@media (max-width: 768px) {
+  .hero.about {
+    height: 550px;
+  }
+  
+  .hero.about .hero-image-container::after {
+    background: linear-gradient(270deg, rgba(255, 255, 255, 0.5) 10%, #fff 50%);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero.about {
+    height: 450px;
   }
 }

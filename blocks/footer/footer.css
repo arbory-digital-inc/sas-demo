@@ -87,6 +87,8 @@ footer .breadcrumbs .homelink::after {
 footer .navigation .links {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 footer .navigation .links ul {
@@ -109,8 +111,92 @@ footer p.socials .icon {
   width: 20px;
 }
 
+/* Responsive Styles */
 @media (width >= 900px) {
   footer .footer > div {
     padding: 40px 32px 24px;
+  }
+}
+
+/* Tablet Styles */
+@media (max-width: 900px) {
+  footer .columns-2-cols > div {
+    flex-direction: column;
+  }
+  
+  footer .columns-2-cols > div > div:first-child {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid white;
+    padding-right: 0;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+  
+  footer .icon-sas-logo-footer {
+    bottom: 30px;
+  }
+  
+  footer .navigation {
+    padding-left: 0;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  footer .footer > div {
+    padding: 30px 16px 20px;
+  }
+  
+  footer .navigation .links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  
+  footer .navigation .links ul {
+    width: 100%;
+  }
+  
+  footer .breadcrumbs {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  footer p.socials {
+    margin-top: 20px;
+    justify-content: center;
+  }
+  
+  footer p.socials .icon {
+    width: 24px; /* Slightly larger for better touch targets */
+  }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 480px) {
+  footer {
+    padding-bottom: 30px;
+  }
+  
+  footer .footer > div {
+    padding: 20px 12px 15px;
+  }
+  
+  footer .navigation {
+    gap: 25px;
+    margin-bottom: 30px;
+  }
+  
+  footer .navigation .links {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
+    row-gap: 25px;
+  }
+  
+  footer .navigation .links ul li {
+    margin-bottom: 10px;
+    font-size: 0.9em;
   }
 }
