@@ -13,6 +13,12 @@ import {
   loadCSS,
 } from './aem.js';
 
+/** DA LIVE PREVIEW */
+(async function loadDa() {
+  if (!new URL(window.location.href).searchParams.get('dapreview')) return;
+  // eslint-disable-next-line import/no-unresolved
+  import('https://da.live/scripts/dapreview.js').then(({ default: daPreview }) => daPreview(loadPage));
+}());
 
 /**
  * load fonts.css and set a session storage flag
