@@ -787,3 +787,44 @@ main div.aem-form-wrapper {
         margin: 0;
     }
 }
+
+.aem-form-container .group-2 .default-content-wrapper .button-container a{
+  color: #0766d1 !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+}
+
+.aem-form-container .layout-wrapper .group-1 .default-content-wrapper h1{
+  margin-bottom: 30px !important;
+}
+
+.aem-form-container .layout-wrapper .group-1 .default-content-wrapper p{
+  line-height: 1.35;
+  font-size: 1rem;
+}
+
+.aem-form-container .layout-wrapper .group-1 .default-content-wrapper ul{
+  line-height: 1.35;
+  font-size: 1rem;
+}
+
+.aem-form-container .layout-wrapper .group-1 .default-content-wrapper p strong{
+  margin-top:20px !important;
+  display: block;
+}
+
+.aem-form-container .group-2 .default-content-wrapper p:first-child{
+  padding-bottom: 15px !important;
+}
+
+.aem-form-container .group-2 .default-content-wrapper p:last-child{
+  padding-bottom: 15px !important;
+  border-top: 1px solid #0766d1 !important;
+  padding-top: 2.5em !important;
+  margin-top: 1em !important;
+  line-height: 1;
+}
+
+.aem-form-container .group-2 sub{
+  font-size: 0.75rem !important;
+}
