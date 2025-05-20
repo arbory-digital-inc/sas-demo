@@ -1,1 +1,6 @@
 helix-importer-ui
+blocks/aem-form/rules/formula/*
+blocks/aem-form/rules/model/*
+blocks/aem-form/rules/functions.js
+scripts/editor-support.js
+scripts/editor-support-rte.js
