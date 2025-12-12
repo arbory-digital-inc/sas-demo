@@ -1,5 +1,5 @@
 # SAS AEM / Edge Delivery Services Demonstration Project
-A demonstration of Edge Delivery Services Technologies, Document Authoring, AEM and Forms
+A demonstration of Edge Delivery Services Technologies, Document Authoring, AEM and Forms 
 
 ## Environments
 - Preview: https://main--sas-demo--arbory-digital-inc.aem.page/
