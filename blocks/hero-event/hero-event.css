@@ -134,8 +134,8 @@ div.section.hero-event-container > div > div > div:nth-child(6) > div:nth-child(
 }
 
 div.section.hero-event-container > div > div > div:nth-child(6) > div:nth-child(2) > p:nth-child(1) > a{
-  border-radius: 60px !important;
-  background: #db127d !important;
+  border-radius: 160px !important;
+  background: #181718 !important;
   font-family: 'anova-reg';
   border: 1px solid #fff;
 }
