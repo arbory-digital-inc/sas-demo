@@ -1,0 +1,20 @@
+{
+  "code": {
+    "owner": "arbory-digital-inc",
+    "repo": "sas-da",
+    "source": {
+      "type": "github",
+      "url": "https://github.com/arbory-digital-inc/sas-da"
+    }
+  },
+  "content": {
+    "source": {
+      "type": "markup",
+      "url": "https://content.da.live/arbory-digital-inc/sas-da/"
+    },
+    "contentBusId": "a46747f3e895729c3d9a4a7d1bf653b63a5b434605a1b4277d24e0f4df4"
+  },
+  "created": "2025-11-25T22:21:41.766Z",
+  "lastModified": "2025-11-25T22:22:24.182Z",
+  "version": 2
+}
